@@ -5,6 +5,7 @@ declare module "next-auth" {
     role: string
     firstName: string
     lastName: string
+    active: boolean
   }
 
   interface Session {
@@ -15,6 +16,7 @@ declare module "next-auth" {
       role: string
       firstName: string
       lastName: string
+      active: boolean
     }
   }
 }
@@ -25,5 +27,6 @@ declare module "next-auth/jwt" {
     role: string
     firstName: string
     lastName: string
+    active: boolean
   }
 }
