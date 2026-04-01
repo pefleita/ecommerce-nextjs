@@ -24,7 +24,13 @@ export function ProductCard({ product }: ProductCardProps) {
     ? product.images[0]
     : '/placeholder.jpg'
 
-  return (
+  const UNOPTIMIZED_DOMAINS = ['placehold.co', 'images.unsplash.com']
+
+const isExternal = imageUrl.startsWith('http')
+const needsUnoptimized = isExternal && 
+  UNOPTIMIZED_DOMAINS.some(d => imageUrl.includes(d))
+
+return (
     <article className="bg-white rounded-xl border border-neutral-200 overflow-hidden hover:border-neutral-300 hover:shadow-md transition-all group">
       <Link href={`/products/${product.slug}`}>
         <div className="aspect-square overflow-hidden bg-neutral-100">
@@ -33,6 +39,7 @@ export function ProductCard({ product }: ProductCardProps) {
             alt={product.name}
             width={400}
             height={400}
+            unoptimized={needsUnoptimized}
             className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
           />
         </div>
